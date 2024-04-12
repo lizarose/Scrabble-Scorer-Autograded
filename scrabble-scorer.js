@@ -99,10 +99,16 @@ function transform(oldPointStructure) {
  let scrabbleScorer = function(word){
    let score = 0;
    let newPS = newPointStructure;
+   let spaces = " ";
 
       for (let i = 0; i < word.length; i++){
          let letters = word[i].toLowerCase();
-         score += newPS[letters]
+
+         if(spaces.includes(letters[i])) {
+            score += 0;
+         } else {
+            score += newPS[letters]
+         }
       }
    return score;
 }
@@ -126,11 +132,13 @@ function scorerPrompt(word) {
              num++;
                 let again = input.question(`\nWould you like to enter a new word? Y or N: `)
                   if (again.toUpperCase() === 'Y'){
-                      console.log(runProgram());
+                      runProgram();
+                      break;
                  } else {
                      console.log(`Goodbye. Thank you for playing.`);
+                     break;
                  }
-             break;
+             
          } else if(num === '1'){
              console.log("\nYou selected the Bonus Vowels scoring method.");
              console.log("Algorithm Name: ", scoringAlgorithms[1].name);
@@ -139,11 +147,13 @@ function scorerPrompt(word) {
              num++;
                let again = input.question(`\nWould you like to enter a new word? Y or N: `)
                   if (again.toUpperCase() === 'Y'){
-                      console.log(runProgram());
+                      runProgram();
+                      break;
                   } else {
                       console.log(`Goodbye. Thank you for playing.`);
+                      break;
                   }
-             break;
+             
          } else if(num === '2'){
             console.log("\nYou selected the traditional Scrabble scoring method.");
             console.log("Algorithm Name: ", scoringAlgorithms[2].name);
@@ -152,11 +162,13 @@ function scorerPrompt(word) {
             num++;
                let again = input.question(`\nWould you like to enter a new word? Y or N: `)
                   if (again.toUpperCase() === 'Y'){
-                      console.log(runProgram());
+                      runProgram();
+                      break;
                  } else {
                      console.log(`Goodbye. Thank you for playing.`);
+                     break;
                  }
-            break;
+               
          } else{
             input.question("\nYou did not select one of the scoring options. Please select 0, 1, or 2: ");
          } 
